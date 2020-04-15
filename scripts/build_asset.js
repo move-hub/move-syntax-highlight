@@ -2,11 +2,15 @@
 
 const { exec } = require('child_process');
 const fs = require('fs');
+const path = require('path');
 
 const parsersDir = __dirname + "/../parsers";
 if (!fs.existsSync(parsersDir)) {
   fs.mkdirSync(parsersDir);
 }
+
+// copy to current dir
+fs.copyFileSync(path.join("node_modules/tree-sitter-move", "queries/highlights.scm"), "queries/highlights.scm");
 
 build_wasm("move");
 

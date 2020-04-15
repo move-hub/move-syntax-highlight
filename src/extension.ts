@@ -5,7 +5,6 @@ import * as Parser from 'web-tree-sitter';
 import * as path from 'path';
 import * as fs from 'fs';
 
-
 async function initParser() {
   await Parser.init();
   let moveParser = new Parser();
@@ -208,38 +207,28 @@ class MoveSemanticTokensProvider implements vscode.DocumentSemanticTokensProvide
     let rootNode = docTree.tree.rootNode;
     let captures = query.captures(rootNode, startPoint, endPoint);
 
-    // if no modifiers, we can push token directly (to prevent extra iterations).
-    const hasModifiers = this.legend.tokenModifiers.length != 0;
-
-    let mergedTokens = new Map();
-    let tokenBuilder = new vscode.SemanticTokensBuilder(this.legend);
+    let mergedTokens: Array<[vscode.Range, string, string[]]> = [];
+    let prev_range: vscode.Range | undefined = undefined;
     for (const capture of captures) {
       let captureName: string = capture.name;
       let parts = captureName.split('.');
       let tokenType = parts.shift()!;
       let node: Parser.SyntaxNode = capture.node;
       let range = new vscode.Range(asPosition(node.startPosition), asPosition(node.endPosition));
-      if (hasModifiers) {
-        let prev = mergedTokens.get(range);
-        if (prev) {
-          // prev modifiers is less than current
-          if (prev[1].length < parts.length) {
-            mergedTokens.set(range, [tokenType, parts]);
-          }
-        } else {
-          mergedTokens.set(range, [tokenType, parts]);
-        }
+
+      if (prev_range !== undefined && range.isEqual(prev_range!)) {
+        // later token will override previous one
+        mergedTokens[mergedTokens.length - 1] = [range, tokenType, parts];
       } else {
-        tokenBuilder.push(range, tokenType, parts);
+        mergedTokens.push([range, tokenType, parts]);
       }
+      prev_range = range;
     }
 
-    if (hasModifiers) {
-      for (const [range, [tokenType, tokenModifiers]] of mergedTokens) {
-        tokenBuilder.push(range, tokenType, tokenModifiers);
-      }
+    let tokenBuilder = new vscode.SemanticTokensBuilder(this.legend);
+    for (const [range, tokenType, tokenModifiers] of mergedTokens) {
+      tokenBuilder.push(range, tokenType, tokenModifiers);
     }
-
     let tokens = tokenBuilder.build();
     return tokens;
   }

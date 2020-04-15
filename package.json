@@ -38,9 +38,21 @@
 		"languages": [
 			{
 				"id": "move",
+				"aliases": [
+					"Move",
+					"move"
+				],
 				"extensions": [
 					".move"
-				]
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "move",
+				"scopeName": "source.move",
+				"path": "./syntaxes/move.tmLanguage.json"
 			}
 		]
 	},
@@ -52,7 +64,7 @@
 		"watch": "tsc -watch -p ./",
 		"pretest": "npm run compile && npm run lint",
 		"test": "node ./out/test/runTest.js",
-		"postinstall": "node ./scripts/build_wasm.js"
+		"postinstall": "node ./scripts/build_asset.js"
 	},
 	"dependencies": {
 		"web-tree-sitter": "^0.16.2"
