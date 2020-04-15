@@ -1,0 +1,83 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Move",
+  "scopeName": "source.move",
+  "patterns": [
+    {
+      "include": "#code"
+    }
+  ],
+  "repository": {
+    "code": {
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#keywords"
+        },
+        {
+          "include": "#literals"
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.move",
+          "begin": "//",
+          "end": "$"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.other.move",
+          "match": "\\b(as|Self|module|resource|struct|fun|public|acquires|let|mut|address)\\b"
+        },
+        {
+          "name": "keyword.control.move",
+          "match": "\\b(use|break|continue|else|for|if|loop|move|copy|return|while)\\b"
+        },
+        {
+          "name": "keyword.operator.comparision.move",
+          "match": "(&&|\\|\\||==|!=)"
+        },
+        {
+          "name": "keyword.other.semi.move",
+          "match": ";"
+        },
+        {
+          "name": "keyword.operator.arithmetic.move",
+          "match": "(!|\\+|-|\\*|/|%|&|\\^|\\||<<|>>)"
+        }
+      ]
+    },
+    "literals": {
+      "patterns": [
+        {
+          "comment": "Boolean literals",
+          "match": "\\b(true|false)\\b",
+          "name": "constant.numeric.boolean.rust"
+        },
+        {
+          "comment": "Integer literal (decimal)",
+          "name": "constant.numeric.integer.decimal.rust",
+          "match": "\\b[0-9][0-9_]*([u](8|16|32|64|128))?\\b"
+        },
+        {
+          "comment": "Integer literal (hexadecimal)",
+          "name": "constant.numeric.integer.hexadecimal.rust",
+          "match": "\\b0x[a-fA-F0-9_]+\\b"
+        },
+        {
+          "comment": "Double-quote string literal",
+          "name": "string.quoted.double.rust",
+          "begin": "x\"",
+          "end": "\""
+        }
+      ]
+    }
+  }
+}
