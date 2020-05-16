@@ -11,7 +11,7 @@
 		"url": "https://github.com/nonsense1984/move-syntax-highlight"
 	},
 	"publisher": "nonsense1984",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"engines": {
 		"vscode": "^1.44.0"
 	},
@@ -82,7 +82,7 @@
 		"js-yaml": "^3.13.1",
 		"mocha": "^7.0.1",
 		"tree-sitter-cli": "^0.16.2",
-		"@nonsense1984/tree-sitter-move": "^0.1.0",
+		"@move-hub/tree-sitter-move": "^0.2.0",
 		"typescript": "^3.7.5",
 		"vsce": "^1.75.0",
 		"vscode-test": "^1.3.0"

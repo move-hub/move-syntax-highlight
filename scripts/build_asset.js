@@ -9,7 +9,7 @@ if (!fs.existsSync(parsersDir)) {
   fs.mkdirSync(parsersDir);
 }
 
-const parserModulePath = "node_modules/@nonsense1984/tree-sitter-move";
+const parserModulePath = "node_modules/@move-hub/tree-sitter-move";
 // copy to current dir
 fs.copyFileSync(path.join(parserModulePath, "queries/highlights.scm"), "queries/highlights.scm");
 
@@ -20,16 +20,14 @@ function build_wasm(lang, modulePath) {
   console.log("Compiling " + lang + " parser");
   exec("node_modules/.bin/tree-sitter build-wasm " + modulePath,
     (err) => {
-      if (err)
-        console.log("Failed to build wasm for " + lang + ": " + err.message);
-      else
+      if (err) { console.log("Failed to build wasm for " + lang + ": " + err.message); }
+      else {
         fs.rename(output, "parsers/" + lang + ".wasm",
           (err) => {
-            if (err)
-              console.log("Failed to copy built parser: " + err.message);
-            else
-              console.log("Successfully compiled " + lang + " parser");
+            if (err) { console.log("Failed to copy built parser: " + err.message); }
+            else { console.log("Successfully compiled " + lang + " parser"); }
           });
+      }
     });
 
 }
