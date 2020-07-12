@@ -9,6 +9,11 @@ jobs:
     name: Release Extension
     runs-on: macos-latest
     steps:
+      - name: install emcc
+        run: git clone https://github.com/emscripten-core/emsdk.git
+      - run: cd emsdk && ./emsdk install latest && ./emsdk activate latest
+      - run: cd emsdk && cat ./emsdk_env.sh && source ./emsdk_env.sh
+
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Set Release Tag Env

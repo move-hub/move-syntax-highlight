@@ -1,0 +1,19 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+jobs:
+  compile_and_test:
+    name: Compile and Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: install emcc
+        run: git clone https://github.com/emscripten-core/emsdk.git
+      - run: cd emsdk && ./emsdk install latest && ./emsdk activate latest
+      - run: cd emsdk && cat ./emsdk_env.sh && source ./emsdk_env.sh
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - run: npm install
+      - run: npm run compile
