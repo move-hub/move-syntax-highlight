@@ -1,11 +1,12 @@
 # move-syntax-highlight
 
-vs code extension for libra move lang syntax highlight based on tree-sitter.
+vs code extension for libra move lang syntax highlighting based on tree-sitter.
 
 ## Features
 
 - Support vscode [semantic highlighting](https://github.com/microsoft/vscode/wiki/Semantic-Highlighting-Overview).
-- Based on tree-sitter which parse code into syntax tree. No more regexp matching.
+- Super fast! based on tree-sitter which parse code into syntax tree.
+- No more regexp matching.
 
 ## Requirements
 
@@ -21,14 +22,7 @@ No settings needed.
 
 ## Known Issues
 
-Color Themes should have semantic highlighting support.
-
-## Release Notes
-
-### 0.1.0
-
-Initial release of move-syntax-highlight.
-
+**Color Theme you use should have semantic highlighting support!**
 
 
 **Enjoy!**
