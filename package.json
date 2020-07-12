@@ -11,7 +11,7 @@
 		"url": "https://github.com/move-hub/move-syntax-highlight"
 	},
 	"publisher": "movei",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"engines": {
 		"vscode": "^1.44.0"
 	},
