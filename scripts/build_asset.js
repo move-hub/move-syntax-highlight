@@ -9,10 +9,7 @@ if (!fs.existsSync(parsersDir)) {
   fs.mkdirSync(parsersDir);
 }
 
-const parserModulePath = "node_modules/@move-hub/tree-sitter-move";
-// copy to current dir
-fs.copyFileSync(path.join(parserModulePath, "queries/highlights.scm"), "queries/highlights.scm");
-
+const parserModulePath = "node_modules/@movei/tree-sitter-move";
 build_wasm("move", parserModulePath);
 
 function build_wasm(lang, modulePath) {

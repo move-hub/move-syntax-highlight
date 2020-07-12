@@ -8,7 +8,7 @@
 		"name": "nonsense1984"
 	},
 	"repository": {
-		"url": "https://github.com/nonsense1984/move-syntax-highlight"
+		"url": "https://github.com/move-hub/move-syntax-highlight"
 	},
 	"publisher": "nonsense1984",
 	"version": "0.2.0",
@@ -71,6 +71,7 @@
 		"web-tree-sitter": "^0.16.2"
 	},
 	"devDependencies": {
+		"@movei/tree-sitter-move": "^0.2.3",
 		"@types/glob": "^7.1.1",
 		"@types/mocha": "^7.0.1",
 		"@types/node": "^12.11.7",
@@ -82,7 +83,6 @@
 		"js-yaml": "^3.13.1",
 		"mocha": "^7.0.1",
 		"tree-sitter-cli": "^0.16.2",
-		"@move-hub/tree-sitter-move": "^0.2.0",
 		"typescript": "^3.7.5",
 		"vsce": "^1.75.0",
 		"vscode-test": "^1.3.0"

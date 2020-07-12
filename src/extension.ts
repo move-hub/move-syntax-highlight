@@ -64,9 +64,9 @@ class MoveParseTrees {
       const startPos = doc.positionAt(startIndex);
       const oldEndPos = doc.positionAt(oldEndIndex);
       const newEndPos = doc.positionAt(newEndIndex);
-      const startPosition = asPoint(startPos)
-      const oldEndPosition = asPoint(oldEndPos)
-      const newEndPosition = asPoint(newEndPos)
+      const startPosition = asPoint(startPos);
+      const oldEndPosition = asPoint(oldEndPos);
+      const newEndPosition = asPoint(newEndPos);
       const delta = {
         startIndex,
         oldEndIndex,
@@ -98,7 +98,7 @@ class MoveParseTrees {
 }
 
 function asPoint(pos: vscode.Position): Parser.Point {
-  return { row: pos.line, column: pos.character }
+  return { row: pos.line, column: pos.character };
 }
 
 function asPosition(point: Parser.Point): vscode.Position {
@@ -227,7 +227,20 @@ class MoveSemanticTokensProvider implements vscode.DocumentSemanticTokensProvide
 
     let tokenBuilder = new vscode.SemanticTokensBuilder(this.legend);
     for (const [range, tokenType, tokenModifiers] of mergedTokens) {
-      tokenBuilder.push(range, tokenType, tokenModifiers);
+      // becasuse semantic token don't support mutliline token.
+      // we need to split it explicitly.
+      for (let i = range.start.line; i <= range.end.line; i++) {
+        let lineRange = document.lineAt(i).range;
+        let start = (i === range.start.line) ? range.start : lineRange.start;
+        let end = (i === range.end.line) ? range.end : lineRange.end;
+        let newRange = new vscode.Range(start, end);
+
+        if (tokenType === 'comment') {
+          console.log(`s.l: ${newRange.start.line}, s.c: ${newRange.start.character}, e.l: ${newRange.end.line}, e.c: ${newRange.end.character}`);
+        }
+        tokenBuilder.push(newRange, tokenType, tokenModifiers);
+      }
+
     }
     let tokens = tokenBuilder.build();
     return tokens;
