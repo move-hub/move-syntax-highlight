@@ -1,13 +1,53 @@
-(module_identifier) @namespace
+(address_literal) @number
+(num_literal) @number
+(byte_string_literal) @string
+(hex_string_literal) @string
+
+(module_identifier) @class
 (struct_identifier) @struct
 (function_identifier) @function
 (variable_identifier) @variable
-(spec_pragma_property
-  (identifier) @variable)
+(type_parameter_identifier) @typeParameter
+(field_identifier) @property
+(constant_identifier) @property.static.constant
+
+
+(use_member
+  member: (identifier) @member
+  alias: (identifier)? @member)
+(spec_let
+  name: (identifier) @property)
+(spec_property
+  (identifier) @property)
 (spec_variable
   name: (identifier) @variable)
-(constant
-  name: (constant_identifier) @property.static.constant)
+
+(resource_accquires
+  (module_access
+    (identifier) @struct))
+(apply_type
+  (module_access
+    (identifier) @type))
+(apply_type
+  (module_access
+    (identifier) @type.defaultLibrary
+    (#match? @type.defaultLibrary "^u8|u64|u128|bool|address|signer|vector$")))
+(name_expression
+  (module_access
+    (identifier) @variable))
+(call_expression
+  (module_access
+    (identifier) @function))
+(pack_expression
+  (module_access
+    (identifier) @struct))
+(bind_unpack
+  (module_access
+    (identifier) @struct))
+
+(quantifier_binding
+  (identifier) @parameter)
+
 
 (func_params
   (function_parameter
@@ -20,12 +60,13 @@
     type: (ref_type
             mutable: "&")))
 
-(type_parameter_identifier) @typeParameter
-(field_identifier) @member
-
 (binary_expression
   operator: (binary_operator) @operator)
 (unary_op) @operator
+
+
+(spec_apply_name_pattern) @struct
+
 
 (line_comment) @comment
 (
@@ -38,24 +79,8 @@
   (#match? @comment.documentation "^\\\/\\\*\\\*(\\n|[^*].*)")
 )
 
-(address_literal) @number
-(num_literal) @number
-(byte_string_literal) @string
-(hex_string_literal) @string
-
-(spec_apply_name_pattern) @struct
-(name_expression
-  	(module_access
-        (identifier) @variable))
-(bind_unpack
-  (module_access
-    (identifier) @struct))
-(resource_accquires
-  (module_access
-    (identifier) @struct))
-(apply_type
-  (module_access
-    (identifier) @struct))
+(condition_kind) @macro
+(invariant_modifier) @modifier
 
 "const" @keyword
 "as" @keyword
@@ -71,10 +96,10 @@
 "acquires" @keyword
 "spec" @keyword
 "schema" @keyword
-"invariant" @keyword
 "include" @keyword
 "apply" @keyword
 "to" @keyword
+"with" @keyword
 "internal" @keyword
 "pragma" @keyword
 "global" @keyword

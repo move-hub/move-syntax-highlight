@@ -13,7 +13,7 @@
 	"publisher": "movei",
 	"version": "0.2.1",
 	"engines": {
-		"vscode": "^1.44.0"
+		"vscode": "^1.47.0"
 	},
 	"categories": [
 		"Programming Languages",
@@ -74,7 +74,7 @@
 		"web-tree-sitter": "^0.16.2"
 	},
 	"devDependencies": {
-		"@movei/tree-sitter-move": "^0.2.3",
+		"@movei/tree-sitter-move": "^0.2.4",
 		"@types/glob": "^7.1.1",
 		"@types/mocha": "^7.0.1",
 		"@types/node": "^14.0.22",
@@ -85,7 +85,7 @@
 		"glob": "^7.1.6",
 		"js-yaml": "^3.13.1",
 		"mocha": "^7.0.1",
-		"standard-version": "^8.0.1",
+		"standard-version": "^9.0.0",
 		"tree-sitter-cli": "^0.16.2",
 		"typescript": "^3.7.5",
 		"vsce": "^1.75.0",

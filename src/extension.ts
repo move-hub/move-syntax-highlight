@@ -235,9 +235,9 @@ class MoveSemanticTokensProvider implements vscode.DocumentSemanticTokensProvide
         let end = (i === range.end.line) ? range.end : lineRange.end;
         let newRange = new vscode.Range(start, end);
 
-        if (tokenType === 'comment') {
-          console.log(`s.l: ${newRange.start.line}, s.c: ${newRange.start.character}, e.l: ${newRange.end.line}, e.c: ${newRange.end.character}`);
-        }
+        // if (tokenType === 'comment') {
+        //   console.log(`s.l: ${newRange.start.line}, s.c: ${newRange.start.character}, e.l: ${newRange.end.line}, e.c: ${newRange.end.character}`);
+        // }
         tokenBuilder.push(newRange, tokenType, tokenModifiers);
       }
 
