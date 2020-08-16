@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.2](https://github.com/move-hub/move-syntax-highlight/compare/v0.2.1...v0.2.2) (2020-08-16)
+
+
+### Features
+
+* update highlight schema ([#11](https://github.com/move-hub/move-syntax-highlight/issues/11)) ([12cda2e](https://github.com/move-hub/move-syntax-highlight/commit/12cda2eaeb81f362afa50c0d64d9f54582c34bcc))
+
 ### [0.2.1](https://github.com/move-hub/move-syntax-highlight/compare/v0.2.0...v0.2.1) (2020-07-12)
 
 
