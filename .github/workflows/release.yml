@@ -7,7 +7,7 @@ on:
 jobs:
   release:
     name: Release Extension
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: install emcc
         run: git clone https://github.com/emscripten-core/emsdk.git
@@ -16,10 +16,11 @@ jobs:
 
       - name: Checkout code
         uses: actions/checkout@v2
+      - run: npm install
+
       - name: Set Release Tag Env
         id: get_tag
         run: echo ::set-env name=RELEASE_TAG::${GITHUB_REF#refs/*/}
-      - run: npm install
       - run: npm run vscode:package -- -o extension.${{ env.RELEASE_TAG }}.vsix
 
       - run: git fetch --depth=1 origin +refs/tags/${{ env.RELEASE_TAG }}:refs/tags/${{ env.RELEASE_TAG }}
