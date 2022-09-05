@@ -71,7 +71,7 @@
 		"release": "standard-version"
 	},
 	"dependencies": {
-		"web-tree-sitter": "^0.16.2"
+		"web-tree-sitter": "^0.20.7"
 	},
 	"devDependencies": {
 		"@movei/tree-sitter-move": "^0.2.4",
